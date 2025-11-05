@@ -1,0 +1,32 @@
+create table TAB_CLIE
+(
+  CODCLI      Int primary key NOT NULL  
+ ,NOME        Varchar(50)   NOT NULL
+ ,ENDERECO    Varchar(50)   
+ ,BAIRRO      Varchar(50)   
+ ,CIDADE      Varchar(50)   
+ ,ESTADO      Varchar(2)   
+ ,CEP         Varchar(9)   
+ ,CGCCPF      Varchar(16)   
+ ,RG          Varchar(10)   
+ ,TELEFONE    Varchar(20)   
+ ,CELULAR     Varchar(20)   
+ ,DIAANIVER   Varchar(2)   
+ ,MESANIVER   Varchar(2)   
+ ,ANOANIVER   Varchar(4)   
+ ,ULTCOMPRA   Date   
+ ,OBSERVA     Varchar(255)   
+ ,EMAIL       Varchar(100)   
+ ,CONTATO     Varchar(100)   
+ ,LIMITE      Numeric(20,2)   
+ ,SALDO       Numeric(20,2)   
+ ,ENDCOBRA    Varchar(50)   
+ ,BAIRCOBRA   Varchar(50)   
+ ,CIDACOBRA   Varchar(50)   
+ ,UFCOBRA     Varchar(2)   
+ ,CEPCOBRA    Varchar(9)   
+ ,NEGATIVO    Logical 
+ ,INSC_EST    Varchar(20)   
+ ,OPERADOR    Varchar(10)  
+ ,DATATUAL    Date     
+ )                                                                                                                                                                               506

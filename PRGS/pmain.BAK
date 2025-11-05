@@ -1,0 +1,307 @@
+********************************************************************** 
+***
+***    Programa : Main.prg (Programa Principal)
+*** Descricao   : Programa principal da Aplicacao 
+***  Parámetros : 
+***       Notas : 
+*** Programador : Fabio Reinert
+***       Data  : 10 / Outubro /2001
+***     Versión : 1.0
+***    Historia : * 
+***
+**********************************************************************
+Local lnWinHandle
+
+*--- Limpeza do ambiente
+CLEAR
+CLEAR ALL
+
+SET CLASSLIB TO reposito ADDITIVE
+*** DECLARAMOS A FUNCÃO API PARA LER DOS ARQUIVOS .INI
+
+DECLARE INTEGER GetPrivateProfileString IN WIN32API;
+	STRING Seccion,;
+	STRING Clave,;
+	STRING PorDefecto,;
+	STRING @CadenaRetorno,;
+	INTEGER longitud,;
+	STRING NombreFichero
+
+*** Declaramos as API para a criação do ODBC
+
+DECLARE Integer RegOpenKeyEx IN Win32API ;
+	Integer nKey, ;
+	String cSubKey,;
+	Integer nReserved, ;
+	Integer nSamDesired, ;
+	Integer @nResult
+
+DECLARE Integer RegQueryValueEx In Win32API ;
+	Integer nKey, ;
+	String cValueName, ;
+	Integer nReserved, ;
+	Integer @nType, ;
+	String @cData, ;
+	Integer @nSizeData
+
+DECLARE Integer RegCloseKey In Win32API ;
+	Integer nKey
+
+DECLARE Integer RegDeleteValue In WIN32API ;
+	Integer  nKey, ;
+	String cValueName
+
+DECLARE Integer RegCreateKeyEx In Win32API ;
+	Integer nKey, ;
+	String cSubKey, ;
+	Integer nReserved, ;
+	String cClass, ;
+	Integer nOptions,;
+	Integer nDesired, ;
+	String @cSecurityAttributes, ;
+	Integer @nResult, ;
+	Integer @nDisposition
+
+DECLARE Integer RegSetValueEx In Win32API ;
+	Integer nKey, ;
+	String cValueName, ;
+	Integer nReserved, ;
+	Integer nType, ;
+	String cData, ;
+	Integer nSizeData
+
+*** Declaro as API para manter ativa a tela de preview do report
+	
+*DECLARE LONG GetActiveWindow IN USER32
+
+*DECLARE LONG IsWindow IN USER32 LONG hndventana
+
+PUBLIC gousuario, goconfig
+PUBLIC gDesenv
+
+*--- verifica se o aplicativo está sendo rodado dentro do VFP
+* FILE() Verifica se o arquivo existe em disco
+* HOME() Retorna o diretorio do 1o. programa executado
+
+IF FILE(HOME()+"VFP.EXE") ;
+OR FILE(HOME()+"VFP6.EXE") ;
+OR FILE(HOME()+"VFP7.EXE") ; 
+OR FILE(HOME()+"VFP8.EXE") ; 
+OR FILE(HOME()+"VFP9.EXE") 
+   m.gDesenv = .t.
+ELSE
+   m.gDesenv = .F.
+ENDIF
+
+*--> Variavel onde será armazenada a variavel indicadora de nivel de usuario
+PUBLIC gNivel
+*--> Variavel publica onde será guardado o codigo do operador
+PUBLIC gOperador 
+PUBLIC gCodOper
+PUBLIC gEmpresa
+PUBLIC m.gpalavra
+PUBLIC m.gImpresso 
+PUBLIC gSenha 
+PUBLIC gDivcupom 
+PUBLIC gMensa1 
+PUBLIC gMensa2 
+PUBLIC gDemo
+PUBLIC gnConnect
+PUBLIC gcConnString
+
+gOperador = "Master"
+gDemo = .F.
+
+IF m.gDesenv 
+*!*	   ** desabilita as opções de desenvolvimento
+*!*	   PUSH MENU _MSYSMENU
+*!*	   IF WVISIBLE("project manager")
+*!*	      DEACTIVATE WINDOW "project manager"
+*!*	   ENDIF   
+*!*	   IF WVISIBLE("standard")
+*!*	      DEACTIVATE WINDOW "standard"
+*!*	   ENDIF       	
+*!*	       		   
+*!*	   RELEASE WINDOWS "layout",;
+*!*	                   "form controls".;
+*!*	                   "report controls",;
+*!*	                   "form designer",;
+*!*	                   "database designer",;
+*!*	                   "view designer",;
+*!*	                   "query designer",;
+*!*	                   "color pallete"
+ELSE
+   ON SHUTDOWN quit     && sai da aplicação pelo X
+ENDIF
+   		   
+*--- Preparação do ambiente
+* Salva configurações
+
+oldFundo = _screen.picture
+oldTalk = SET("talk")
+oldPath = SET("path")
+oldDate = SET("date")
+oldDel = SET("Deleted" )
+oldCurrency = SET("Currency",1)
+oldPoint = SET("point")
+oldSeparator = SET("Separator")
+oldExclusive = SET("Exclusive" )
+oldReprocess = SET("Reprocess")
+oldRefresh = SET("refresh")
+*olderror = ON("error")
+DO sets.prg
+*!*	SET TALK OFF
+*!*	SET NOTIFY OFF
+*!*	SET CONSOLE OFF
+*!*	SET DATE TO DMY
+*!*	SET DELETED ON
+*!*	SET CURRENCY TO "R$"
+*!*	SET POINT TO ","
+*!*	SET SEPARATOR TO "."
+*!*	SET ENGINEBEHAVIOR 70
+
+*!*	SET EXCLUSIVE OFF
+*!*	SET REPROCESS TO 5
+*!*	SET REFRESH TO 5
+*!*	SET STATUS off
+
+_SCREEN.WindowState = 2
+
+*DO FORM frmsplash
+
+*PUBLIC lcdatabase
+
+LOCAL lcPathAtual, lcPathNovo, lcNovo, lcAtual
+
+ON ERROR 
+
+CLOSE DATABASES
+
+DO conecta_dbc.prg
+
+*!*	*goconfig = CREATEOBJECT('configura')
+
+*!*	*gcConnString = goconfig.pConexao
+
+*!*	*IF Empt(gcConnstring)
+*!*	*   messagebox("Favor verificar o arquivo de configuração",16,"Atenção") 
+*!*	*   QUIT
+*!*	*ENDIF   
+
+*!*	*{ Abertura da base de dados }*
+
+
+*!*	lcdatabase = SYS(5) + SYS(2003) +"\Dados\" +  'dbsmg.dbc'
+*!*	*!*	*SET DEFA TO &goconfig.pdatabasepath
+*!*	*!*	*OPEN DATABASE Dbsgl.mdb SHARED 
+*!*	OPEN DATABASE (lcdatabase)
+*!*	SET DATABASE TO (lcdatabase)
+
+SELECT * FROM tab_lojas INTO CURSOR crsRS
+
+*!*	***-> Banco de dados Access
+*!*	****lcdatabase = goconfig.pdatabasepath  + 'DBSGL.mdb'
+*!*	*!*	lcPathAtual = goconfig.pdatabasepath
+*!*	*!*	lcbasenova = goconfig.pbasenovapath   
+
+*!*	*!*	LOCAL oConn as "adodb.connection"
+*!*	*!*	LOCAL oRS as "adodb.recordset"
+*!*	*!*	oConn = CREATEOBJECT('adodb.connection')
+*!*	*!*	oRS = CREATEOBJECT('adodb.recordset')
+
+*!*	*!*	oConn.CursorLocation= 3            && adUseClient
+
+*!*	*!*	oConn.Open(gcConnString)
+
+*!*	*!*	*!* Open RecordSet using keyset cursor and optimistic locking.
+*!*	*!*	oRS.Open("select * from tab_loja",oConn,1,3,1)
+*!*	*!*	*? 'Current value:',oRS.Fields("loja").Value
+*!*	*!*	*!*	oRS.Fields("contactname").Value = "Patricio X. Simpson"
+*!*	*!*	*!*	oRS.Update()
+*!*	*!*	*!*	oRS.Requery()
+*!*	*!*	*!*	? 'New value:',oRS.Fields("contactname").Value
+*!*	*!*	*oRS.Close()
+*!*	*!*	*oConn.Close()
+
+*!*	*!*	*----- Part 2 -----*
+*!*	*!*	 * Convert the ADO recordset to VFP cusor using CursorAdapter
+*!*	*!*	 oCA = CREATEOBJECT("CursorAdapter")
+*!*	*!*	 * Assign a cursor name
+*!*	*!*	 oCA.Alias = "crsRS"
+*!*	*!*	 oCA.DataSourceType = "ADO"
+*!*	*!*	 * Fill the cursor from the recordset
+*!*	*!*	 oCA.CursorFill(,,,oRS)
+*!*	*!*	 
+*!*	*!*	AFIELDS(laFields)
+*!*	*!*	STORE '' TO lcField1,lcField2
+*!*	*!*	PRIVATE i
+*!*	*!*	FOR i = 1 TO ALEN(laFields,1)
+*!*	*!*		lcField1 = lcField1 + IIF(EMPTY(lcField1),'',',') + ALLTRIM(laFields[i,1])
+*!*	*!*		lcField2 = lcField2 + IIF(EMPTY(lcField2),'',',') + ALLTRIM(laFields[i,1]) + ' ' + ALLTRIM("crsRS") + '.' + ALLTRIM(laFields[i,1])
+*!*	*!*	ENDFOR
+*!*	SELECT crsRS
+*!*	*!*	*USE
+*!*	*!*	*-- Propriedades para atualização
+*!*	*!*	oCA.UPDATABLEFIELDLIST = lcField1
+*!*	*!*	oCA.UPDATENAMELIST = lcField2
+*!*	*!*	*oCA.KEYFIELDLIST = tcChavePrimaria
+*!*	*!*	oCA.BUFFERMODEOVERRIDE = 5
+*!*	*!*	oCA.SENDUPDATES = .T.
+
+*!*	*!*	* Detach cursor so it still be open after CursorAdapter is destroyed
+*!*	*!*	oCA.CursorDetach()
+*!*	*!*	* Destroy CursorAdapter
+*!*	*!*	oCA = NULL
+
+*!*	*!*	oRS.Close()
+*!*	*!*	oConn.Close()
+
+gEmpresa = crsRS.nome
+gImpresso = crsRS.impresso
+gPalavra = crsRS.palavra
+gSenha = crsRS.senha
+gDivcupom = crsRS.divcupom
+gMensa1 = crsRS.Mensagem1
+gMensa2 = crsRS.mensagem2 
+
+*!*	Declare Integer FindWindow In Win32API Integer, String 
+*!*	lnWinHandle = FindWindow( 0, "Sistema de Gerenciamento Comercial" )
+*!*	If lnWinHandle # 0 
+*!*	   =Messagebox( "O aplicativo já está sendo executado!", 16 )
+*!*	   Cancel
+*!*	Endif
+
+IF m.gDesenv 
+   gNivel = 1
+   DO FORM frmprinc
+	*{ Ocultamos a tela do fox }*
+	_SCREEN.Hide
+*   frmprinc.picture = "figura.bmp"
+   frmprinc.caption = frmprinc.caption + " - " + gEmpresa 
+   frmprinc.show
+ELSE
+	*: Ativamos o formulario de entrada que não esta visivel :*
+	DO FORM frmlogin
+	*{ Ocultamos a tela do fox }*
+	_SCREEN.Hide
+	*( Criamos o objeto de criptografia )*
+	gOcripta = CREATEOBJECT('crypto')
+	*{ Mostramos o formulário de entrada}*
+	frmLogin.show()
+ENDIF
+
+READ EVENTS
+
+FUNCTION oRS_Access() as ADODB.RecordSet
+	LOCAL loRS as ADODB.RecordSet
+	IF VARTYPE(this.oRS)<>"O" THEN
+		this.oRS = NULL
+		loRS = NEWOBJECT("ADODB.Recordset")
+		IF VARTYPE(loRS)="O" THEN
+			loRS.CursorType= 3 && adOpenStatic
+			loRS.CursorLocation = 3 && adUseClient
+			loRS.LockType= 3 && adLockOptimistic
+			this.oRS = loRS
+		ENDIF
+	ENDIF
+RETURN this.oRS

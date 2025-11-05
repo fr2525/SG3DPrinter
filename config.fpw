@@ -1,0 +1,4 @@
+DEFAULT = d:\aplics_vfp9\SMG
+PATH = d:\aplics_vfp9\SMG;d:\aplics_vfp9\classes;d:\aplics_vfp9\SMG\dados;d:\aplics_vfp9\SMG\forms;d:\aplics_vfp9\SMG\menus;d:\aplics_vfp9\SMG\prgs;d:\aplics_vfp9\SMG\rpts
+command = MODIFY PROJECT d:\aplics_vfp9\smg\smg.pjx
+command = do "d:\aplics_vfp9\SMG\carrega.prg"
