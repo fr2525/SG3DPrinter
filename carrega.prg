@@ -17,6 +17,12 @@ PUBLIC gMensa2
 PUBLIC gDemo
 PUBLIC lcdatabase
 PUBLIC gcConnString 
+
+PUBLIC gOcripta
+
+gOcripta = CREATEOBJECT('crypto')
+*SET STEP ON
+
 gcConnString = "Provider=vfpoledb;Data Source=" + SYS(5) + SYS(2003) + "\Dados\" +  "dbsg3d.dbc"
 M.DATA = DATE() 
 gOperador = 'MASTER' 
@@ -48,6 +54,7 @@ gDemo = .F.
 *!*	SET PATH TO  &vPath
 *SET CLASSLIB TO reposito ADDITIVE
 
+
 *!*	*: Establecemos los path con la creación del objeto configuración:*
 *!*	goconfig = CREATEOBJECT('configura')
 *!*	*goConfig.pcini = GETENV("windir") + "dbsMG.INI"
@@ -69,6 +76,19 @@ SET SEPARATOR TO '.'
 SET POINT TO ','
 SET ENGINEBEHAVIOR 70
 
+oldFundo = _screen.picture
+oldTalk = SET("talk")
+oldPath = SET("path")
+oldDate = SET("date")
+oldDel = SET("Deleted" )
+oldCurrency = SET("Currency",1)
+oldPoint = SET("point")
+oldSeparator = SET("Separator")
+oldExclusive = SET("Exclusive" )
+oldReprocess = SET("Reprocess")
+oldRefresh = SET("refresh")
+
+DO sets.prg
 *SET CLOCK ON
 *SET PROCEDURE TO funcoes.prg
 

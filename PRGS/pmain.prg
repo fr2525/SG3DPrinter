@@ -108,6 +108,8 @@ PUBLIC gDemo
 PUBLIC gnConnect
 PUBLIC gcConnString
 
+PUBLIC gOcripta
+
 gOperador = "Master"
 gDemo = .F.
 
@@ -171,6 +173,8 @@ _SCREEN.WindowState = 2
 *PUBLIC lcdatabase
 
 LOCAL lcPathAtual, lcPathNovo, lcNovo, lcAtual
+
+gOcripta = CREATEOBJECT('crypto')
 
 ON ERROR 
 

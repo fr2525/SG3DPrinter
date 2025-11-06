@@ -17,6 +17,12 @@ PUBLIC gMensa2
 PUBLIC gDemo
 PUBLIC lcdatabase
 PUBLIC gcConnString 
+
+PUBLIC gOcripta
+
+gOcripta = CREATEOBJECT('crypto')
+*SET STEP ON
+
 gcConnString = "Provider=vfpoledb;Data Source=" + SYS(5) + SYS(2003) + "\Dados\" +  "dbsg3d.dbc"
 M.DATA = DATE() 
 gOperador = 'MASTER' 
@@ -46,7 +52,8 @@ gDemo = .F.
 *!*	vPath = vPath + sys(5) + "\Aplics_VFP9\SMG\MENUS;"   + sys(5) +  "\aplics\VFP9_smg\prgs;" 
 *!*	vPath = vPath + sys(5) + "\aplics\VFP9_smg\rpts;" + + sys(5) +  "\aplics\VFP9_smg\dados;" 
 *!*	SET PATH TO  &vPath
-SET CLASSLIB TO reposito ADDITIVE
+*SET CLASSLIB TO reposito ADDITIVE
+
 
 *!*	*: Establecemos los path con la creación del objeto configuración:*
 *!*	goconfig = CREATEOBJECT('configura')
@@ -68,6 +75,18 @@ SET CURRENCY TO 'R$'
 SET SEPARATOR TO '.'
 SET POINT TO ','
 SET ENGINEBEHAVIOR 70
+
+oldFundo = _screen.picture
+oldTalk = SET("talk")
+oldPath = SET("path")
+oldDate = SET("date")
+oldDel = SET("Deleted" )
+oldCurrency = SET("Currency",1)
+oldPoint = SET("point")
+oldSeparator = SET("Separator")
+oldExclusive = SET("Exclusive" )
+oldReprocess = SET("Reprocess")
+oldRefresh = SET("refresh")
 
 *SET CLOCK ON
 *SET PROCEDURE TO funcoes.prg

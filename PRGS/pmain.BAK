@@ -17,8 +17,8 @@ CLEAR
 CLEAR ALL
 
 SET CLASSLIB TO reposito ADDITIVE
-*** DECLARAMOS A FUNCÃO API PARA LER DOS ARQUIVOS .INI
 
+*** DECLARAMOS A FUNCÃO API PARA LER DOS ARQUIVOS .INI
 DECLARE INTEGER GetPrivateProfileString IN WIN32API;
 	STRING Seccion,;
 	STRING Clave,;
@@ -28,7 +28,6 @@ DECLARE INTEGER GetPrivateProfileString IN WIN32API;
 	STRING NombreFichero
 
 *** Declaramos as API para a criação do ODBC
-
 DECLARE Integer RegOpenKeyEx IN Win32API ;
 	Integer nKey, ;
 	String cSubKey,;
