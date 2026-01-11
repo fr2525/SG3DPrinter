@@ -1,0 +1,23 @@
+Form c:\aplics\vfp9\sg3dprinter\forms\frmprinc.scx has the following errors:
+    File FILAMENTO.JPG - Undefined
+
+Menu c:\aplics\vfp9\sg3dprinter\menus\menuprin.mnx has the following errors:
+    Form FMUDAUSU - Undefined
+    Form FAGENDA - Undefined
+    Form FCANCVENDA - Undefined
+    Form FENTRADAS - Undefined
+    Form FCANCENT - Undefined
+    Form FOUTRASMOV - Undefined
+    Form FBAIAPAG - Undefined
+
+Visual Class Library c:\aplics\vfp9\classes\controls.vcx has the following errors:
+    Menu PAINEL - Undefined
+
+Visual Class Library c:\aplics\vfp9\classes\reposito.vcx has the following errors:
+    Proc./Func. VALIDAR_BASEDATOS - Undefined
+    Unknown DECRYPT - Undefined
+    Unknown ENCRYPT - Undefined
+
+Form c:\aplics\vfp9\sg3dprinter\forms\fvendas.scx has the following errors:
+    Unknown F_CABE - Undefined
+

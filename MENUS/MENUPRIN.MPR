@@ -1,12 +1,12 @@
 *       *********************************************************
 *       *                                                         
-*       * 19/08/2016           MENUPRIN.MPR             00:05:54  
+*       * 07/01/2026           MENUPRIN.MPR             14:01:21  
 *       *                                                         
 *       *********************************************************
 *       *                                                         
 *       * Author's Name                                           
 *       *                                                         
-*       * Copyright (C) 2016 Company Name                         
+*       * Copyright (C) 2026 Company Name                         
 *       * Address                                                 
 *       * City,     Zip                                           
 *       *                                                         
@@ -127,25 +127,25 @@ ENDIF
 
 DEFINE MENU (m.cMenuName) IN (m.oFormRef.Name) BAR
 
-DEFINE PAD _4pk007ley OF (m.cMenuName) PROMPT "\<Arquivos" COLOR SCHEME 3 ;
+DEFINE PAD _7d90u1zz6 OF (m.cMenuName) PROMPT "\<Arquivos" COLOR SCHEME 3 ;
 	KEY ALT+A, ""
-DEFINE PAD _4pk007lez OF (m.cMenuName) PROMPT "\<Cadastros" COLOR SCHEME 3 ;
+DEFINE PAD _7d90u1zz7 OF (m.cMenuName) PROMPT "\<Cadastros" COLOR SCHEME 3 ;
 	KEY ALT+C, ""
-DEFINE PAD _4pk007lf0 OF (m.cMenuName) PROMPT "\<Movimentações" COLOR SCHEME 3 ;
+DEFINE PAD _7d90u1zz8 OF (m.cMenuName) PROMPT "\<Movimentações" COLOR SCHEME 3 ;
 	KEY ALT+M, ""
-DEFINE PAD _4pk007lf1 OF (m.cMenuName) PROMPT "\<Relatórios" COLOR SCHEME 3 ;
+DEFINE PAD _7d90u1zz9 OF (m.cMenuName) PROMPT "\<Relatórios" COLOR SCHEME 3 ;
 	KEY ALT+R, "" ;
 	SKIP FOR gnivel > 2
-DEFINE PAD _4pk007lf2 OF (m.cMenuName) PROMPT "\<Utilitários" COLOR SCHEME 3 ;
+DEFINE PAD _7d90u1zza OF (m.cMenuName) PROMPT "\<Utilitários" COLOR SCHEME 3 ;
 	KEY ALT+U, ""
-DEFINE PAD _4pk007lf3 OF (m.cMenuName) PROMPT "\<Help" COLOR SCHEME 3 ;
+DEFINE PAD _7d90u1zzb OF (m.cMenuName) PROMPT "\<Help" COLOR SCHEME 3 ;
 	KEY ALT+H, ""
-ON PAD _4pk007ley OF (m.cMenuName) ACTIVATE POPUP (a_menupops[1])
-ON PAD _4pk007lez OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
-ON PAD _4pk007lf0 OF (m.cMenuName) ACTIVATE POPUP (a_menupops[3])
-ON SELECTION PAD _4pk007lf1 OF (m.cMenuName) do form frelatos
-ON PAD _4pk007lf2 OF (m.cMenuName) ACTIVATE POPUP (a_menupops[5])
-ON PAD _4pk007lf3 OF (m.cMenuName) ACTIVATE POPUP (a_menupops[6])
+ON PAD _7d90u1zz6 OF (m.cMenuName) ACTIVATE POPUP (a_menupops[1])
+ON PAD _7d90u1zz7 OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
+ON PAD _7d90u1zz8 OF (m.cMenuName) ACTIVATE POPUP (a_menupops[3])
+ON SELECTION PAD _7d90u1zz9 OF (m.cMenuName) do form frelatos
+ON PAD _7d90u1zza OF (m.cMenuName) ACTIVATE POPUP (a_menupops[5])
+ON PAD _7d90u1zzb OF (m.cMenuName) ACTIVATE POPUP (a_menupops[6])
 
 DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[1]) PROMPT "Mudar Usuário"
@@ -154,46 +154,37 @@ DEFINE BAR 3 OF (a_menupops[1]) PROMPT "\<Saída"
 ON SELECTION BAR 1 OF (a_menupops[1]) do form fmudausu
 ON SELECTION BAR 2 OF (a_menupops[1]) do form fagenda
 ON SELECTION BAR 3 OF (a_menupops[1]) ;
-	DO _4pk007lf4 ;
-	IN LOCFILE("SMG\MENUS\MENUPRIN" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENUPRIN?")
+	DO _7d90u1zzc ;
+	IN LOCFILE("SG3DPRINTER\MENUS\MENUPRIN" ,"MPX;MPR|FXP;PRG" ,"WHERE is MENUPRIN?")
 
 DEFINE POPUP (a_menupops[2]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[2]) PROMPT "Empresa"
-DEFINE BAR 2 OF (a_menupops[2]) PROMPT "Profissional"
-DEFINE BAR 3 OF (a_menupops[2]) PROMPT "Feriados"
-DEFINE BAR 4 OF (a_menupops[2]) PROMPT "Cidades"
-DEFINE BAR 5 OF (a_menupops[2]) PROMPT "Clientes"
-DEFINE BAR 6 OF (a_menupops[2]) PROMPT "Serviços"
-DEFINE BAR 7 OF (a_menupops[2]) PROMPT "Pacote de Serviços"
-DEFINE BAR 8 OF (a_menupops[2]) PROMPT "\<Fornecedores" ;
+DEFINE BAR 2 OF (a_menupops[2]) PROMPT "Clientes"
+DEFINE BAR 3 OF (a_menupops[2]) PROMPT "\<Fornecedores" ;
 	SKIP FOR gNivel > 1 ;
 	MESSAGE "recurso não disponivel"
-DEFINE BAR 9 OF (a_menupops[2]) PROMPT "\<Usuários" ;
+DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\<Usuários" ;
 	SKIP FOR gnivel > 1 ;
 	MESSAGE "Recurso não disponível"
-DEFINE BAR 10 OF (a_menupops[2]) PROMPT "\<Grupos" ;
+DEFINE BAR 5 OF (a_menupops[2]) PROMPT "\<Produtos" ;
 	SKIP FOR gnivel > 1 ;
 	MESSAGE "Recurso não disponível"
-DEFINE BAR 11 OF (a_menupops[2]) PROMPT "\<Produtos" ;
-	SKIP FOR gnivel > 1 ;
-	MESSAGE "Recurso não disponível"
-DEFINE BAR 12 OF (a_menupops[2]) PROMPT "\<Unidades" ;
+DEFINE BAR 6 OF (a_menupops[2]) PROMPT "\<Unidades" ;
 	SKIP FOR gNivel > 1 ;
 	MESSAGE "Recurso não disponível"
-DEFINE BAR 13 OF (a_menupops[2]) PROMPT "Tipos de \<Movimentacao" ;
+DEFINE BAR 7 OF (a_menupops[2]) PROMPT "Tipos de \<Movimentacao" ;
 	SKIP FOR gNivel > 1 ;
 	MESSAGE "Recurso não disponível"
-DEFINE BAR 14 OF (a_menupops[2]) PROMPT "\<Tipos de Venda" ;
+DEFINE BAR 8 OF (a_menupops[2]) PROMPT "\<Tipos de Venda" ;
 	SKIP FOR gNivel > 1 ;
 	MESSAGE "Recurso não disponível"
-ON SELECTION BAR 5 OF (a_menupops[2]) do form fclientes
-ON SELECTION BAR 8 OF (a_menupops[2]) DO form ffornece
-ON SELECTION BAR 9 OF (a_menupops[2]) DO form foperado
-ON SELECTION BAR 10 OF (a_menupops[2]) Do form fgrupos
-ON SELECTION BAR 11 OF (a_menupops[2]) DO form fprodutos
-ON SELECTION BAR 12 OF (a_menupops[2]) do form fUnidades
-ON SELECTION BAR 13 OF (a_menupops[2]) do form ftipomov
-ON SELECTION BAR 14 OF (a_menupops[2]) do form ftipovend
+ON SELECTION BAR 2 OF (a_menupops[2]) do form fclientes
+ON SELECTION BAR 3 OF (a_menupops[2]) DO form ffornece
+ON SELECTION BAR 4 OF (a_menupops[2]) DO form foperado
+ON SELECTION BAR 5 OF (a_menupops[2]) DO form fprodutos
+ON SELECTION BAR 6 OF (a_menupops[2]) do form fUnidades
+ON SELECTION BAR 7 OF (a_menupops[2]) do form ftipomov
+ON SELECTION BAR 8 OF (a_menupops[2]) do form ftipovend
 
 DEFINE POPUP (a_menupops[3]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[3]) PROMPT "\<Vendas"
@@ -249,7 +240,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _4PK007LF4  ON SELECTION BAR 3 OF POPUP arquivos        
+*       * _7D90U1ZZC  ON SELECTION BAR 3 OF POPUP arquivos        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -260,7 +251,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _4pk007lf4
+PROCEDURE _7d90u1zzc
 If gDesenv
    Clear Events
    Release all
