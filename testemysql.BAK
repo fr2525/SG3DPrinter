@@ -1,0 +1,41 @@
+ 
+gcConnString = "DSN=Sql_Server_Express;UID=;PWD=;"
+
+STORE SQLSTRINGCONNECT(gcConnString) TO lnConn
+  SET STEP ON 
+   
+SQLEXEC(lnConn, ;
+   "SELECT id, nome, email FROM tb_clientes", ;
+   "crClientes")
+SELECT crClientes
+SET MULTILOCKS ON
+
+* Bufferização otimista
+CURSORSETPROP("Buffering", 5)
+
+* Tabela base no MySQL
+CURSORSETPROP("Tables", "tb_clientes")
+
+* Chave primária
+CURSORSETPROP("KeyFieldList", "id", "tb_clientes")
+
+* Campos editáveis
+CURSORSETPROP("UpdatableFieldList", "nome,email")
+
+* Mapeamento campo local ? campo MySQL
+CURSORSETPROP("UpdateNameList", "nome tb_clientes.nome, email tb_clientes.email")
+
+* Habilitar envio de updates
+CURSORSETPROP("SendUpdates", .T.)
+
+REPLACE nome WITH "Fabio Reinert"
+REPLACE email WITH "fabio@email.com"
+
+IF TABLEUPDATE(.T., .T., "crClientes")
+   MESSAGEBOX("Registro atualizado no MySQL!")
+ELSE
+   AERROR(aErro)
+   MESSAGEBOX("Erro: " + aErro[2])
+ENDIF
+
+TABLEREVERT(.T., "crClientes")

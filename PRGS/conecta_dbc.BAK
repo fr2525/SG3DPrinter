@@ -1,5 +1,9 @@
 
-gcConnString = "DSN=Sql_Server_express;UID=;PWD=;"
+*gcConnString = "DSN=Sql_Server_Express;UID=;PWD=;"
+
+**** Testando Mysql
+gcConnString = "Driver={MySQL ODBC 8.0 Unicode Driver};Server=localhost;Database=db_Printer3D;User=root;Password=oyster;"
+
 
 *gcConnString= 'DRIVER=PostgreSQL Unicode(x86);SERVER=localhost;PORT=5432;DATABASE=postgres;uid=postgres;pwd=oyster;Trusted_Connection=Yes;BoolsAsChar=0'
 
@@ -11,3 +15,4 @@ ELSE
    *= SQLDISCONNECT(gnconnHandle)
 ENDIF
 
+  
