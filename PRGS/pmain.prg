@@ -92,6 +92,8 @@ ELSE
    m.gDesenv = .F.
 ENDIF
 
+SET PROCEDURE TO funcoes_globais.prg additive
+
 *--> Variavel onde será armazenada a variavel indicadora de nivel de usuario
 PUBLIC gNivel
 *--> Variavel publica onde será guardado o codigo do operador

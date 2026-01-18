@@ -16,7 +16,7 @@ Local lnWinHandle
 CLEAR
 CLEAR ALL
 
-SET CLASSLIB TO reposito ADDITIVE
+*SET CLASSLIB TO reposito ADDITIVE
 
 *** DECLARAMOS A FUNCÃO API PARA LER DOS ARQUIVOS .INI
 DECLARE INTEGER GetPrivateProfileString IN WIN32API;
@@ -91,6 +91,10 @@ OR FILE(HOME()+"VFP9.EXE")
 ELSE
    m.gDesenv = .F.
 ENDIF
+
+
+SET PROCEDURE TO funcoes_globais.prg additive
+
 
 *--> Variavel onde será armazenada a variavel indicadora de nivel de usuario
 PUBLIC gNivel

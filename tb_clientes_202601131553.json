@@ -1,0 +1,84 @@
+{
+"tb_clientes": [
+	{
+		"id" : 1,
+		"cpf_cnpj" : "11111111111",
+		"nome" : "Reinert",
+		"email" : "fabio@hotmail.com",
+		"celular" : "(11) 111111111",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 2,
+		"cpf_cnpj" : "22222222222",
+		"nome" : "Reinert2",
+		"email" : "fabio2@hotmail.com",
+		"celular" : "(11) 222222222",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 3,
+		"cpf_cnpj" : "33333333333",
+		"nome" : "Reinert3",
+		"email" : "fabio3@hotmail.com",
+		"celular" : "(11) 333333333",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 4,
+		"cpf_cnpj" : "44444444444",
+		"nome" : "Reinert4",
+		"email" : "fabio4@hotmail.com",
+		"celular" : "(11) 444444444",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 5,
+		"cpf_cnpj" : "55555555555",
+		"nome" : "Reinert5",
+		"email" : "fabio5@hotmail.com",
+		"celular" : "(11) 555555555",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 6,
+		"cpf_cnpj" : "66666666666",
+		"nome" : "Reinert6",
+		"email" : "fabio6@hotmail.com",
+		"celular" : "(11) 666666666",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 7,
+		"cpf_cnpj" : "77777777777",
+		"nome" : "Reinert7",
+		"email" : "fabio7@hotmail.com",
+		"celular" : "(11) 777777777",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 8,
+		"cpf_cnpj" : "88888888888",
+		"nome" : "Reinert8",
+		"email" : "fabio8@hotmail.com",
+		"celular" : "(11) 888888888",
+		"operador" : 1,
+		"datatual" : null
+	},
+	{
+		"id" : 9,
+		"cpf_cnpj" : "99999999999",
+		"nome" : "Reinert9",
+		"email" : "fabio9@hotmail.com",
+		"celular" : "(11) 999999999",
+		"operador" : 1,
+		"datatual" : null
+	}
+]}

@@ -1,0 +1,11 @@
+{
+"tb_lojas": [
+	{
+		"id" : 1,
+		"nome" : "Vibe Informática",
+		"endereco" : "Rua Marcilio Dias, 29",
+		"cnpj" : "11111111111",
+		"operador" : null,
+		"datatual" : null
+	}
+]}

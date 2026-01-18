@@ -1,0 +1,27 @@
+{
+"tb_situacao": [
+	{
+		"id_status" : 1,
+		"descricao" : "A iniciar",
+		"operador" : null,
+		"datatual" : null
+	},
+	{
+		"id_status" : 2,
+		"descricao" : "Inciado",
+		"operador" : null,
+		"datatual" : null
+	},
+	{
+		"id_status" : 3,
+		"descricao" : "Finalizado",
+		"operador" : null,
+		"datatual" : null
+	},
+	{
+		"id_status" : 4,
+		"descricao" : "Entregue",
+		"operador" : null,
+		"datatual" : null
+	}
+]}

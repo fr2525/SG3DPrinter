@@ -1,0 +1,15 @@
+{
+"tb_niveis": [
+	{
+		"id" : 1,
+		"descricao" : "Administrador",
+		"operador" : null,
+		"datatual" : null
+	},
+	{
+		"id" : 2,
+		"descricao" : "Operador",
+		"operador" : null,
+		"datatual" : null
+	}
+]}

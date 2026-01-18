@@ -64,7 +64,12 @@ oldExclusive = SET("Exclusive" )
 oldReprocess = SET("Reprocess")
 oldRefresh = SET("refresh")
 
+
+
 DO sets.prg
+
+SET PROCEDURE TO funcoes_globais.prg additive
+
 *SET CLOCK ON
 *SET PROCEDURE TO funcoes.prg
 
