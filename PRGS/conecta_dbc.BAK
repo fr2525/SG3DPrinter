@@ -1,5 +1,4 @@
 * String de conexão (exemplo sem DSN)
-SET STEP ON 
 lcConnString = "Driver={PostgreSQL Unicode};Server=localhost;Port=5432;Database=postgres;Uid=postgres;Pwd=oyster;"
 gnConnHandle = SQLSTRINGCONNECT(lcConnString)
 

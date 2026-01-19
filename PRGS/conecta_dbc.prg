@@ -6,7 +6,7 @@ IF gnConnHandle < 0
     MESSAGEBOX("Erro ao conectar ao PostgreSQL", 16, "Erro")
     RETURN
 ENDIF
-
+CLEAR
 *String para sql server
 *gcConnString = "DSN=Sql_Server_Express;UID=;PWD=;"
 

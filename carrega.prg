@@ -6,7 +6,11 @@ DECLARE INTEGER GetPrivateProfileString IN WIN32API;
 	INTEGER longitud,;
 	STRING NombreFichero
 
-PUBLIC m.pnivel,m.data,gOperador, gDesenv
+PUBLIC m.pnivel,m.data
+PUBLIC gOperador
+PUBLIC gCodOper
+PUBLIC gDesenv
+
 PUBLIC m.gEmpresa
 PUBLIC m.gpalavra
 PUBLIC m.gImpresso 
@@ -26,8 +30,21 @@ gOcripta = CREATEOBJECT('crypto')
 
 *gcConnString = "Provider=vfpoledb;Data Source=" + SYS(5) + SYS(2003) + "\Dados\" +  "dbsg3d.dbc"
 M.DATA = DATE() 
-gOperador = 'MASTER' 
-gNivel=1
+
+
+DO conecta_dbc.prg
+ 
+gstrSql = "select  id, nome, login, celular, senha, nivel, salario, comissao, operador, datatual from tb_usuarios WHERE nivel = 1"
+lnresult = SQLEXEC(gnconnHandle,gstrSql,'curoper' )
+
+SELECT curoper
+
+gNivel = curoper.nivel
+gOperador = curoper.nome
+gCodOper = curoper.id
+
+USE
+
 gSenha = .T.
 gDesenv = .T.
 gEmpresa = "Empresa Demo"
@@ -38,12 +55,6 @@ gMensa1 = "Mensagem 1"
 gMensa2 = "Mensagem 2"
 
 gDemo = .F.
-
-*lcdatabase = SYS(5) + SYS(2003) +"\Dados\" +  'dbsg3d.dbc'
-*!*	*SET DEFA TO &goconfig.pdatabasepath
-*!*	*OPEN DATABASE Dbsgl.mdb SHARED 
-*OPEN DATABASE (lcdatabase)
-*SET DATABASE TO (lcdatabase)
 
 SET DATE BRITI
 SET CENTURY ON
@@ -64,12 +75,7 @@ oldExclusive = SET("Exclusive" )
 oldReprocess = SET("Reprocess")
 oldRefresh = SET("refresh")
 
-
-
 DO sets.prg
 
 SET PROCEDURE TO funcoes_globais.prg additive
-
-*SET CLOCK ON
-*SET PROCEDURE TO funcoes.prg
 
